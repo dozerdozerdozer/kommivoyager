@@ -29,12 +29,14 @@ std::vector<std::pair<double, double>> TSP::gen_rand_points(int N) {
     return random_generated_points;
 }
 
+
 // расстояние от точки p1 до точки p2
 double TSP::evklid_dist(const std::pair<double, double>& point_1, const std::pair<double, double>& point_2) {
     double dist_x = point_1.first - point_2.first;
     double dist_y = point_1.second - point_2.second;
     return std::sqrt(dist_x * dist_x + dist_y * dist_y);
 }
+
 
 // качество приближения задачи коммивояжера
 double TSP::approx_quality(const Graph& graph, const std::vector<std::pair<double, double>>& points) {
@@ -51,12 +53,16 @@ double TSP::approx_quality(const Graph& graph, const std::vector<std::pair<doubl
     return total_weight / minimum_weight;
 }
 
+
+// массив порядка точек
 std::vector<int> TSP::points_arr(int N) {
     std::vector<int> remove_arr(N);
     std::iota(remove_arr.begin(), remove_arr.end(), 0);
     return remove_arr;
 }
 
+
+// длина оптимального маршрута
 double TSP::opt_route_lenght(const std::vector<std::pair<double, double>>& points, const std::vector<int>& points_arr) {
     double length = 0.0;
     for (int i = 0; i < points_arr.size() - 1; ++i) {
