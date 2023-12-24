@@ -1,23 +1,29 @@
 #include <cstdio>
 #include "graph.h"
 
+
+// конструктор массива
 Graph::Graph(size_t vertices_count) {
     vertices.resize(vertices_count);
 }
 
+
+// добавление вершины
 void Graph::AddEdge(int from, int to, int weight) {
     vertices[from - 1].emplace_back(to - 1, weight);
     vertices[to - 1].emplace_back(from - 1, weight);
 }
 
+
+// алгоритм Прима
 int Graph::prima_alg() const {
-    int start = 1;
+    int start_vert = 1;
     std::set<std::pair<int, int>> verts;
     std::vector<int> key(vertices.size(), std::numeric_limits<int>::max());
     std::vector<bool> is_vert_in_ost_tree(vertices.size(), false);
 
-    key[start] = 0;
-    verts.insert({0, start});
+    key[start_vert] = 0;
+    verts.insert({0, start_vert});
 
     while (!verts.empty()) {
         int curr_vert = verts.begin()->second;
