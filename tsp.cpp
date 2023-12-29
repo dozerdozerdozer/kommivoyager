@@ -39,7 +39,7 @@ double TSP::evklid_dist(const std::pair<double, double>& point_1, const std::pai
 
 
 // качество приближения задачи коммивояжера
-double TSP::approx_quality(const Graph& graph, const std::vector<std::pair<double, double>>& points) {
+double TSP::approx_quality(Graph& graph, const std::vector<std::pair<double, double>>& points) {
     double total_weight = 0;
     for (int i = 0; i < points.size() - 1; ++i) {
         int from = i + 1;
@@ -48,7 +48,7 @@ double TSP::approx_quality(const Graph& graph, const std::vector<std::pair<doubl
     }
     total_weight += evklid_dist(points.back(), points.front());
 
-    int minimum_weight = graph.prima_alg();
+    int minimum_weight = graph.kruskal_alg();
 
     return total_weight / minimum_weight;
 }
