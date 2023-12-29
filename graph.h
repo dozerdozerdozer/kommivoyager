@@ -3,6 +3,7 @@
 #include <vector>
 #include <set>
 #include <limits>
+#include <algorithm>
 
 class Graph {
 public:
@@ -10,8 +11,18 @@ public:
 
     void AddEdge(int from, int to, int weight);
 
-    int prima_alg() const;
+    int kruskal_alg();
 
 private:
-    std::vector<std::vector<std::pair<int, int>>> vertices;
+    struct GraphVertice {
+        int from;
+        int to;
+        int weight;
+    };
+
+    std::vector<GraphVertice> vertices;
+
+    int find_root(int i, std::vector<int>& parent);
+
+    void merge_root(int a, int b, std::vector<int>& parent);
 };
